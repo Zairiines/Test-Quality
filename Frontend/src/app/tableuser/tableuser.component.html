@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Users</h2>
+
+  <button mat-raised-button color="primary" (click)="openAddUserDialog()" class="add-user-btn">
+    Add User
+  </button>
+
+  <table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+    <!-- Username Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-button color="primary" (click)="selectUserForUpdate(user)" class="edit-btn">Edit</button>
+        <button mat-button color="warn" (click)="openConfirmation(user.id)" class="delete-btn">Delete</button>
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Row Declarations -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Confirmation Dialog -->
+  <div *ngIf="showConfirmation" class="confirmation-dialog">
+    <p>Are you sure you want to delete this user?</p>
+    <button mat-button color="warn" (click)="confirmDelete()">Confirm</button>
+    <button mat-button (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>

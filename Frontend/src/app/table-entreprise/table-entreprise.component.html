@@ -1,0 +1,49 @@
+<div class="container">
+  <h2>Table Entreprise</h2>
+
+  <button mat-raised-button color="primary" (click)="openAddEntrepriseDialog()" class="add-entreprise-btn">
+    Add Entreprise
+  </button>
+
+<!-- Champ de recherche avec un bouton à droite -->
+<div class="search">
+  <i class="fa fa-search"></i>
+  <input type="text" class="form-control" placeholder="Recherche..." [(ngModel)]="searchName">
+  <button class="btn btn-primary" (click)="searchEntrepriseByName()">Search</button>
+</div>
+
+  <!-- Table des entreprises -->
+  <table mat-table [dataSource]="entreprises" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let entreprise">{{ entreprise.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let entreprise">{{ entreprise.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone</th>
+      <td mat-cell *matCellDef="let entreprise">{{ entreprise.phone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let entreprise">
+        <button mat-button color="primary" (click)="selectEntrepriseForUpdate(entreprise)" class="edit-btn">Edit</button>
+        <button mat-button color="warn" (click)="openConfirmation(entreprise.id)" class="delete-btn">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div *ngIf="showConfirmation" class="confirmation-dialog">
+    <p>Are you sure you want to delete this entreprise?</p>
+    <button mat-button color="warn" (click)="confirmDelete()">Confirm</button>
+    <button mat-button (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>

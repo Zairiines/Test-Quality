@@ -1,0 +1,90 @@
+<!-- Bouton Add Contract -->
+<button mat-raised-button color="primary" (click)="openAddContractDialog()" class="add-contract-btn">
+  Add Contract
+</button>
+
+<!-- Champ de recherche avec un bouton à droite -->
+<div class="search">
+  <i class="fa fa-search"></i>
+  <input type="text" class="form-control" placeholder="Recherche..." [(ngModel)]="searchName">
+  <button mat-raised-button color="primary" (click)="searchContracts()">Search</button>
+</div>
+
+<!-- Tableau des contrats -->
+<div class="table-container">
+  <table mat-table [dataSource]="filteredContracts" class="mat-elevation-z8">
+    <!-- Colonne Title -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef class="sort" (click)="onSort('title')">
+        Title
+      </th>
+      <td mat-cell *matCellDef="let contract"> {{ contract.title || 'N/A' }} </td>
+    </ng-container>
+
+    <!-- Colonne Description -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef class="sort" (click)="onSort('description')">
+        Description
+      </th>
+      <td mat-cell *matCellDef="let contract"> {{ contract.description || 'N/A' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="entrepriseName">
+      <th mat-header-cell *matHeaderCellDef class="sort" (click)="onSort('entrepriseName')">
+        Company Name
+      </th>
+      <td mat-cell *matCellDef="let contract"> 
+        {{ contract.entrepriseName ? contract.entrepriseName : 'Company Name not available' }} 
+      </td>
+    </ng-container>
+    
+
+    <!-- Colonne Start Date -->
+    <ng-container matColumnDef="dateDebut">
+      <th mat-header-cell *matHeaderCellDef class="sort" (click)="onSort('dateDebut')">
+        Start Date
+      </th>
+      <td mat-cell *matCellDef="let contract"> {{ contract.dateDebut ? (contract.dateDebut | date) : 'N/A' }} </td>
+    </ng-container>
+
+    <!-- Colonne End Date -->
+    <ng-container matColumnDef="dateFin">
+      <th mat-header-cell *matHeaderCellDef class="sort" (click)="onSort('dateFin')">
+        End Date
+      </th>
+      <td mat-cell *matCellDef="let contract"> {{ contract.dateFin ? (contract.dateFin | date) : 'N/A' }} </td>
+    </ng-container>
+
+    <!-- Colonne Documents Link -->
+    <ng-container matColumnDef="documents">
+      <th mat-header-cell *matHeaderCellDef> Documents </th>
+      <td mat-cell *matCellDef="let contract">
+        <a mat-button [routerLink]="['/documents', contract.contractId]">View Documents</a>
+      </td>
+    </ng-container>
+
+    <!-- Colonne Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let contract">
+        <button mat-button color="primary" (click)="openUpdateContractDialog(contract)">
+          Edit
+        </button>
+        <button mat-button color="warn" (click)="deleteContract(contract.contractId)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header et contenu des lignes -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<!-- Confirmation de suppression -->
+<div *ngIf="showConfirmation" class="confirmation-dialog">
+  <p>Are you sure you want to delete this contract?</p>
+  <button mat-button color="warn" (click)="confirmDelete()">Confirm</button>
+  <button mat-button (click)="cancelDelete()">Cancel</button>
+</div>

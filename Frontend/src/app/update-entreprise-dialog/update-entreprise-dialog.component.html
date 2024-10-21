@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Edit Entreprise</h2>
+
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="updateForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="updateForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="updateForm.get('email')?.hasError('email')">
+        Invalid email format
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="updateForm.get('phone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button type="submit" [disabled]="updateForm.invalid">Update</button>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+  </mat-dialog-actions>
+</form>

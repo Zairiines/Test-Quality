@@ -1,0 +1,41 @@
+<h2>Add Contract</h2>
+<form (ngSubmit)="createContract()">
+  <!-- Champ Title en premier -->
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="newContract.title" name="title" required />
+  </mat-form-field>
+
+  <!-- Champ Description en second -->
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="newContract.description" name="description" required></textarea>
+  </mat-form-field>
+
+  <!-- Champ Start Date après Title et Description -->
+  <mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input matInput [(ngModel)]="newContract.dateDebut" name="dateDebut" type="date" required />
+  </mat-form-field>
+
+  <!-- Champ End Date -->
+  <mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput [(ngModel)]="newContract.dateFin" name="dateFin" type="date" required />
+  </mat-form-field>
+
+  <!-- Champ Company Name -->
+  <mat-form-field>
+    <mat-label>Company Name</mat-label>
+    <input matInput [(ngModel)]="newContract.entrepriseName" name="entrepriseName" required />
+  </mat-form-field>
+
+  <!-- Champ User Id -->
+  <mat-form-field>
+    <mat-label>User Id</mat-label>
+    <input matInput [(ngModel)]="newContract.userId" name="userId" type="number" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Create</button>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+</form>

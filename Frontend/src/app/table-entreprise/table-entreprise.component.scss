@@ -1,0 +1,167 @@
+/* Styles généraux */
+body {
+  background-color: #eee;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+/* Style du conteneur principal */
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Champ de recherche */
+.search {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex; /* Flexbox layout */
+  box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+  align-items: center; /* Centrer verticalement */
+}
+
+.search input {
+  width: 100%;
+  height: 40px; /* Réduire la hauteur */
+  padding-left: 40px; /* Espacement pour l'icône */
+  border: 2px solid #d6d4d4;
+  border-radius: 5px 0 0 5px; /* Coins arrondis à gauche */
+  font-size: 16px;
+}
+
+.search input:focus {
+  box-shadow: none;
+  border-color: blue;
+}
+
+.search button {
+  height: 40px; /* Correspond à la hauteur de l'input */
+  width: 100px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0; /* Coins arrondis à droite */
+  cursor: pointer;
+}
+
+.search button:hover {
+  background-color: #0056b3;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 50%;
+  left: 10px; /* Distance entre l'icône et le bord */
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: gray;
+}
+
+/* Style de la table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #bbb3ba;
+  color: white;
+  font-weight: bold;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+
+/* Style des boutons dans la table */
+button {
+  padding: 8px 12px;
+  margin: 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #5997da;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Style de la boîte de dialogue de confirmation */
+.confirmation-dialog {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .search button {
+    width: 80px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .search button {
+    height: 40px;
+    width: 80px;
+  }
+}

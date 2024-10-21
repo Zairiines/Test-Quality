@@ -1,0 +1,32 @@
+<!-- Ajouter ce bouton pour ouvrir le dialogue d'upload -->
+<button mat-button (click)="openUploadDialog()">Upload Document</button>
+
+<!-- Affichage de la liste des documents -->
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let document of documents">
+      <td>{{ document.title }}</td>
+      <td>{{ document.description }}</td>
+      <td>{{ document.type }}</td>
+      <td>
+        <!-- Vérification si document.documentId est défini avant d'afficher le bouton -->
+        <button mat-button *ngIf="document.documentId" (click)="downloadDocument(document.documentId!)">Download</button>
+        <!-- Si documentId n'est pas défini, afficher un message -->
+        <span *ngIf="!document.documentId">ID non disponible</span>
+        <!-- Lien pour afficher les documents d'un contrat spécifique -->
+        <a mat-button *ngIf="document.contractId" [routerLink]="['/documents', document.contractId]">View Documents</a>
+      </td>
+    </tr>
+    <tr *ngIf="documents.length === 0">
+      <td colspan="4" class="noresult">No documents available.</td>
+    </tr>
+  </tbody>
+</table>

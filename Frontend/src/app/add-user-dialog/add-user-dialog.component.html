@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Add New User</h2>
+<form [formGroup]="addUserForm" (ngSubmit)="onAddUser()">
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" required>
+    <mat-error *ngIf="addUserForm.get('username')?.hasError('required')">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required type="email">
+    <mat-error *ngIf="addUserForm.get('email')?.hasError('email')">
+      Please enter a valid email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" required type="password">
+    <mat-error *ngIf="addUserForm.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Add</button>
+  </div>
+</form>

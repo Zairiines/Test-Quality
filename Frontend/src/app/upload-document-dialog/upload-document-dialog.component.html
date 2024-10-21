@@ -1,0 +1,37 @@
+<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="title" name="title" required>
+      <div *ngIf="uploadForm.submitted && !title" class="error-message">
+        Please enter a title.
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="description" name="description" required>
+      <div *ngIf="uploadForm.submitted && !description" class="error-message">
+        Please enter a description.
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <input matInput [(ngModel)]="type" name="type" required>
+      <div *ngIf="uploadForm.submitted && !type" class="error-message">
+        Please enter a type.
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Contract ID</mat-label>
+      <input matInput type="number" [(ngModel)]="contractId" name="contractId" required>
+      <div *ngIf="uploadForm.submitted && !contractId" class="error-message">
+        Please enter a valid contract ID.
+      </div>
+    </mat-form-field>
+    <input type="file" (change)="onFileSelected($event)" required>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" type="submit">Upload</button>
+  </mat-dialog-actions>
+</form>

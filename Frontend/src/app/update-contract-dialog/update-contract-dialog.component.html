@@ -1,0 +1,34 @@
+<h3>Edit Contract</h3>
+<form [formGroup]="form" (ngSubmit)="onUpdate()">
+  <!-- Nouveau champ Title -->
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+
+  <!-- Nouveau champ Description -->
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Company Name</mat-label>
+    <input matInput formControlName="entrepriseName" />
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Start Date</mat-label>
+    <input matInput formControlName="dateDebut" type="date" />
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>End Date</mat-label>
+    <input matInput formControlName="dateFin" type="date" />
+  </mat-form-field>
+  
+  <div class="form-actions">
+    <button type="submit" mat-raised-button color="primary">Update</button>
+    <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+  </div>
+</form>
